@@ -40,10 +40,8 @@ public class MovieManagerTest {
     @Test
     public void testAddMoreMovie() {
         movieManager.add(movie3);
-
         Movie[] actual = movieManager.getAll();
         Movie[] expected = new Movie[]{movie3, movie2, movie1, movie};
-
         assertArrayEquals(expected, actual);
     }
 
@@ -57,10 +55,8 @@ public class MovieManagerTest {
         movieManager.add(movie8);
         movieManager.add(movie9);
         movieManager.add(movie10);
-
         Movie[] actual = movieManager.getAll();
         Movie[] expected = new Movie[]{movie10, movie9, movie8, movie7, movie6, movie5, movie4, movie3, movie2, movie1};
-
         assertArrayEquals(expected, actual);
     }
 

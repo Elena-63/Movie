@@ -2,7 +2,6 @@ package ru.netology.manager;
 
 import ru.netology.domain.Movie;
 
-
 public class MovieManager {
     private static Movie[] items = new Movie[0];
     private int showMoviesCount = 10; // количество фильмов = 10
@@ -11,7 +10,7 @@ public class MovieManager {
         this.showMoviesCount = showMoviesCount;
     }
 
-    public MovieManager(){
+    public MovieManager() {
     }
 
     public void add(Movie item) { // добавить фильм
@@ -38,6 +37,5 @@ public class MovieManager {
             result[i] = items[index];
         }
         return result;
-
     }
 }
