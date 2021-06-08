@@ -52,11 +52,10 @@ public class MovieManagerTest {
     public void shouldShowMinus1() {
         MovieManager manager = new MovieManager(-1);
 
-        Movie[] expected = new Movie[] {movie2, movie1, movie};
+        Movie[] expected = new Movie[]{movie2, movie1, movie};
         Movie[] actual = movieManager.getAll();
 
         assertArrayEquals(expected, actual);
-
     }
 
     @Test
@@ -64,7 +63,7 @@ public class MovieManagerTest {
         movieManager = new MovieManager();
 
         Movie[] expected = new Movie[]{};
-        Movie [] actual = movieManager.getAll();
+        Movie[] actual = movieManager.getAll();
     }
 
     @Test
