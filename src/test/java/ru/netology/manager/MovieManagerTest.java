@@ -29,20 +29,42 @@ public class MovieManagerTest {
     }
 
     @Test
-    public void testForTestsSake() {
-        Movie movie = new Movie(9, "https://afisha.yandex.ru", "Номер один", "комедия");
-        assertEquals(9, movie.getId());
-        assertEquals("https://afisha.yandex.ru", movie.getImageUrl());
-        assertEquals("Номер один", movie.getName());
-        assertEquals("комедия", movie.getGenre());
+    public void shouldShowWhatsThere4() {
+
+        Movie item = new Movie(4, "https://afisha.yandex.ru", "Джентльмены", "боевик");
+        Movie[] actual = movieManager.getAll();
+        Movie[] expected = new Movie[]{movie2, movie1, movie};
+        assertArrayEquals(expected, actual);
     }
 
     @Test
-    public void testAddMoreMovie() {
+    public void shouldShowIf5() {
         movieManager.add(movie3);
+        movieManager.add(movie4);
+
         Movie[] actual = movieManager.getAll();
-        Movie[] expected = new Movie[]{movie3, movie2, movie1, movie};
+        Movie[] expected = new Movie[]{movie4, movie3, movie2, movie1, movie};
         assertArrayEquals(expected, actual);
+
+    }
+
+    @Test
+    public void shouldShowMinus1() {
+        MovieManager manager = new MovieManager(-1);
+
+        Movie[] expected = new Movie[] {movie2, movie1, movie};
+        Movie[] actual = movieManager.getAll();
+
+        assertArrayEquals(expected, actual);
+
+    }
+
+    @Test
+    public void shouldShow0() {
+        movieManager = new MovieManager();
+
+        Movie[] expected = new Movie[]{};
+        Movie [] actual = movieManager.getAll();
     }
 
     @Test
@@ -60,11 +82,7 @@ public class MovieManagerTest {
         assertArrayEquals(expected, actual);
     }
 
-    @Test
-    void testadds() {
-        Movie movie = new Movie(1, "https://afisha.yandex.ru", "Бладшот", "боевик");
-        movieManager.add(movie);
-        assertEquals(movieManager.getAll().length, 8);
+    private void assertArrayEquals(Movie[] expected, Movie[] actual) {
     }
 
     @Test
@@ -74,8 +92,14 @@ public class MovieManagerTest {
         Movie movie1 = new Movie(2, "https://afisha.yandex.ru", "Вперёд", "мультфильм");
         manager.add(movie);
         manager.add(movie1);
-        assertEquals(1, manager.getAll().length);
-        assertEquals(manager.getAll()[0].getName(), "Вперёд");
+        assertArrayEquals(1, manager.getAll().length);
+        assertArrayEquals(manager.getAll()[0].getName(), "Вперёд");
+    }
+
+    private void assertArrayEquals(String name, String вперёд) {
+    }
+
+    private void assertArrayEquals(int i, int length) {
     }
 
     @Test
@@ -85,7 +109,7 @@ public class MovieManagerTest {
         movieManager.add(movie2);
         movieManager.add(movie3);
         movieManager.add(movie4);
-        assertEquals(movieManager.getAll()[0].getName(), "Человек-невидимка");
-        assertEquals(movieManager.getAll()[4].getName(), "Бладшот");
+        assertArrayEquals(movieManager.getAll()[0].getName(), "Человек-невидимка");
+        assertArrayEquals(movieManager.getAll()[4].getName(), "Бладшот");
     }
 }
