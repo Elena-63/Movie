@@ -8,7 +8,7 @@ import static org.junit.jupiter.api.Assertions.assertArrayEquals;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
 public class MovieManagerTest {
-    private ru.netology.manager.MovieManager movieManager = new ru.netology.manager.MovieManager();
+    MovieManager movieManager = new MovieManager();
     private Movie movie = new Movie(1, "https://afisha.yandex.ru", "Бладшот", "боевик");
     private Movie movie1 = new Movie(2, "https://afisha.yandex.ru", "Вперёд", "мультфильм");
     private Movie movie2 = new Movie(3, "https://afisha.yandex.ru", "Отель <<Белград>>", "комедия");
@@ -26,24 +26,28 @@ public class MovieManagerTest {
         movieManager.add(movie);
         movieManager.add(movie1);
         movieManager.add(movie2);
+        movieManager.add(movie3);
+        movieManager.add(movie4);
+        movieManager.add(movie5);
+        movieManager.add(movie6);
+        movieManager.add(movie7);
+        movieManager.add(movie8);
+        movieManager.add(movie9);
     }
 
     @Test
     public void shouldShowWhatsThere4() {
 
-        Movie item = new Movie(4, "https://afisha.yandex.ru", "Джентльмены", "боевик");
+        Movie item = new Movie(10, "https://afisha.yandex.ru", "Девятаев", "биография");
         Movie[] actual = movieManager.getAll();
-        Movie[] expected = new Movie[]{movie2, movie1, movie};
+        Movie[] expected = new Movie[]{ movie9, movie8, movie7, movie6, movie5, movie4, movie3, movie2, movie1, movie};
         assertArrayEquals(expected, actual);
     }
 
     @Test
     public void shouldShowIf5() {
-        movieManager.add(movie3);
-        movieManager.add(movie4);
-
         Movie[] actual = movieManager.getAll();
-        Movie[] expected = new Movie[]{movie4, movie3, movie2, movie1, movie};
+        Movie[] expected = new Movie[]{movie9, movie8, movie7, movie6, movie5, movie4, movie3, movie2, movie1, movie};
         assertArrayEquals(expected, actual);
 
     }
@@ -52,7 +56,7 @@ public class MovieManagerTest {
     public void shouldShowMinus1() {
         MovieManager manager = new MovieManager(-1);
 
-        Movie[] expected = new Movie[]{movie2, movie1, movie};
+        Movie[] expected = new Movie[]{movie9, movie8, movie7, movie6, movie5, movie4, movie3, movie2, movie1, movie};
         Movie[] actual = movieManager.getAll();
 
         assertArrayEquals(expected, actual);
@@ -60,55 +64,29 @@ public class MovieManagerTest {
 
     @Test
     public void shouldShow0() {
-        movieManager = new MovieManager();
-
-        Movie[] expected = new Movie[]{};
-        Movie[] actual = movieManager.getAll();
-    }
+            MovieManager manager = new MovieManager(0);
+            Movie[] actual = manager.getAll();
+            Movie[] expected = new Movie[]{};
+            assertArrayEquals(expected, actual);
+        }
 
     @Test
-    public void testAddMoreTenMovie() {
-        movieManager.add(movie3);
-        movieManager.add(movie4);
-        movieManager.add(movie5);
-        movieManager.add(movie6);
-        movieManager.add(movie7);
-        movieManager.add(movie8);
-        movieManager.add(movie9);
-        movieManager.add(movie10);
-        Movie[] actual = movieManager.getAll();
-        Movie[] expected = new Movie[]{movie10, movie9, movie8, movie7, movie6, movie5, movie4, movie3, movie2, movie1};
+    public void shouldShowFilmsWithLimit() {
+
+        MovieManager manager = new MovieManager(5);
+        Movie[] actual = manager.getAll();
+        Movie[] expected = new Movie[]{movie9, movie8, movie7, movie6, movie5};
         assertArrayEquals(expected, actual);
     }
 
-    private void assertArrayEquals(Movie[] expected, Movie[] actual) {
-    }
-
     @Test
-    void testSetMoviesCount() {
-        MovieManager manager = new MovieManager(1);
-        Movie movie = new Movie(1, "https://afisha.yandex.ru", "Бладшот", "боевик");
-        Movie movie1 = new Movie(2, "https://afisha.yandex.ru", "Вперёд", "мультфильм");
-        manager.add(movie);
-        manager.add(movie1);
-        assertArrayEquals(1, manager.getAll().length);
-        assertArrayEquals(manager.getAll()[0].getName(), "Вперёд");
-    }
+    public void shouldDefaultValues() {
 
-    private void assertArrayEquals(String name, String вперёд) {
-    }
+        MovieManager manager = new MovieManager();
+        manager.add(movie10);
+        Movie[] actual = manager.getAll();
+        Movie[] expected = new Movie[]{movie10, movie9, movie8, movie7, movie6, movie5, movie4, movie3, movie2, movie1};
+        assertArrayEquals(expected, actual);
 
-    private void assertArrayEquals(int i, int length) {
-    }
-
-    @Test
-    void testMoviesQueue() {
-        movieManager.add(movie);
-        movieManager.add(movie1);
-        movieManager.add(movie2);
-        movieManager.add(movie3);
-        movieManager.add(movie4);
-        assertArrayEquals(movieManager.getAll()[0].getName(), "Человек-невидимка");
-        assertArrayEquals(movieManager.getAll()[4].getName(), "Бладшот");
     }
 }
