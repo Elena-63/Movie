@@ -5,7 +5,6 @@ import org.junit.jupiter.api.Test;
 import ru.netology.domain.Movie;
 
 import static org.junit.jupiter.api.Assertions.assertArrayEquals;
-import static org.junit.jupiter.api.Assertions.assertEquals;
 
 public class MovieManagerTest {
     MovieManager movieManager = new MovieManager();
@@ -37,10 +36,9 @@ public class MovieManagerTest {
 
     @Test
     public void shouldShowWhatsThere4() {
-
         Movie item = new Movie(10, "https://afisha.yandex.ru", "Девятаев", "биография");
         Movie[] actual = movieManager.getAll();
-        Movie[] expected = new Movie[]{ movie9, movie8, movie7, movie6, movie5, movie4, movie3, movie2, movie1, movie};
+        Movie[] expected = new Movie[]{movie9, movie8, movie7, movie6, movie5, movie4, movie3, movie2, movie1, movie};
         assertArrayEquals(expected, actual);
     }
 
@@ -49,30 +47,26 @@ public class MovieManagerTest {
         Movie[] actual = movieManager.getAll();
         Movie[] expected = new Movie[]{movie9, movie8, movie7, movie6, movie5, movie4, movie3, movie2, movie1, movie};
         assertArrayEquals(expected, actual);
-
     }
 
     @Test
     public void shouldShowMinus1() {
         MovieManager manager = new MovieManager(-1);
-
-        Movie[] expected = new Movie[]{movie9, movie8, movie7, movie6, movie5, movie4, movie3, movie2, movie1, movie};
         Movie[] actual = movieManager.getAll();
-
+        Movie[] expected = new Movie[]{movie9, movie8, movie7, movie6, movie5, movie4, movie3, movie2, movie1, movie};
         assertArrayEquals(expected, actual);
     }
 
     @Test
     public void shouldShow0() {
-            MovieManager manager = new MovieManager(0);
-            Movie[] actual = manager.getAll();
-            Movie[] expected = new Movie[]{};
-            assertArrayEquals(expected, actual);
-        }
+        MovieManager manager = new MovieManager(0);
+        Movie[] actual = manager.getAll();
+        Movie[] expected = new Movie[]{};
+        assertArrayEquals(expected, actual);
+    }
 
     @Test
     public void shouldShowFilmsWithLimit() {
-
         MovieManager manager = new MovieManager(5);
         Movie[] actual = manager.getAll();
         Movie[] expected = new Movie[]{movie9, movie8, movie7, movie6, movie5};
@@ -81,12 +75,10 @@ public class MovieManagerTest {
 
     @Test
     public void shouldDefaultValues() {
-
         MovieManager manager = new MovieManager();
         manager.add(movie10);
         Movie[] actual = manager.getAll();
         Movie[] expected = new Movie[]{movie10, movie9, movie8, movie7, movie6, movie5, movie4, movie3, movie2, movie1};
         assertArrayEquals(expected, actual);
-
     }
 }
